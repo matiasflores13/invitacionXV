@@ -1,0 +1,238 @@
+/* ===== FUENTES ===== */
+@font-face {
+  font-family: '';
+  src: url('../fuentes/the-seasons.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Sulat Rizal';
+  src: url('../fuentes/SulatRizal.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Glacial';
+  src: url('../fuentes/GlacialIndifference-Regular.otf') format('opentype');
+}
+
+/* ===== BASE ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden;
+}
+
+/* Capa 1: imagen estirada y borrosa (relleno de lados) */
+body::before {
+  content: '';
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-image: url("../imgs/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(20px) brightness(1.1) saturate(1.2);
+  transform: scale(1.05);
+  z-index: -2;
+}
+
+/* Capa 2: imagen nítida centrada encima del blur */
+body::after {
+  content: '';
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-image: url("../imgs/fondo.png");
+  background-size: auto 100vh;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+/* ===== CONTENEDOR ===== */
+.contenedor {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  overflow: visible;
+}
+
+/* ===== CARD ===== */
+.card {
+  width: 100%;
+  padding: clamp(16px, 5vw, 32px);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(4px);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== TIPOGRAFÍAS ===== */
+.card h1 {
+  font-family: 'The Seasons', serif;
+  margin: 0 0 4px 0;
+  line-height: 1.2;
+}
+
+.mis {
+  font-size: clamp(14px, 4vw, 24px);
+  color: #5c659d;
+}
+
+.quince {
+  font-size: clamp(40px, 12vw, 72px);
+  color: #5c659d;
+  line-height: 1;
+}
+
+.años {
+  font-size: clamp(14px, 4vw, 24px);
+  color: #5c659d;
+}
+
+.card h2 {
+  font-family: 'Sulat Rizal', cursive;
+  font-size: clamp(36px, 10vw, 60px);
+  color: #5378bd;
+  margin: 4px 0 6px;
+  line-height: 1.1;
+}
+
+/* ===== FECHA ===== */
+.fecha {
+  font-family: 'The Seasons', serif;
+  margin: 4px 0 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.dia {
+  font-size: clamp(24px, 7vw, 42px);
+  color: #5c659d;
+  line-height: 1;
+}
+
+.mes {
+  font-size: clamp(18px, 5vw, 32px);
+  color: #5c659d;
+  line-height: 1;
+}
+
+.card p.indicacion {
+  font-family: 'Glacial', sans-serif;
+  font-size: clamp(11px, 3vw, 14px);
+  color: #5c659d;
+  margin: 4px 0 10px;
+  text-align: center;
+}
+
+.card p {
+  font-size: clamp(14px, 4vw, 18px);
+  color: #333;
+}
+
+/* ===== SOBRE ===== */
+.sobre-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 8px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.sobre {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.seal {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(60px, 20%, 100px);
+  height: auto;
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+.seal:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Celular pequeño (≤ 360px) */
+@media (max-width: 360px) {
+  body {
+    padding: 12px;
+  }
+  .card {
+    border-radius: 12px;
+  }
+}
+
+/* Celular (≤ 600px) */
+@media (max-width: 600px) {
+  body {
+    background-image: url("../imgs/fondo.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    padding: 30px 16px;
+  }
+  .contenedor {
+    max-width: 340px;
+  }
+  .sobre-container {
+    max-width: 260px;
+  }
+}
+
+/* Tablet (601px – 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    background-image: url("../imgs/fondo.png");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }
+  .contenedor {
+    max-width: 480px;
+  }
+}
+
+/* PC (≥ 1025px) */
+@media (min-width: 1025px) {
+  body {
+    background-image: none;
+  }
+  body::before {
+    display: block;
+  }
+  body::after {
+    display: block;
+  }
+  .contenedor {
+    max-width: 440px;
+  }
+}
